@@ -4,14 +4,14 @@
 ## and .pdf output files (complete with bibliography, if present) from
 ## your markdown file. 
 ## -	Change the paths at the top of the file as needed.
-## -	Using `make` without arguments will generate html, tex, and pdf 
-## 	output files from all of the files with the designated markdown
-##	extension. The default is `.md` but you can change this. 
-## -	You can specify an output format with `make tex`, `make pdf` or 
-## - 	`make html`. 
-## -	Doing `make clean` will remove all the .tex, .html, and .pdf files 
-## 	in your working directory. Make sure you do not have files in these
-##	formats that you want to keep!
+## -	Using `make` without arguments will generate html, tex, pdf, docx,  
+## 	and odt output files from all of the files with the designated 
+##	markdown extension. The default is `.md` but you can change this. 
+## -	You can specify an output format with `make tex`, `make pdf`,  
+## - 	`make html`, `make odt`, or `make docx`
+## -	Doing `make clean` will only remove all .tex, .html, .pdf, .odt,
+##	and .docx files in your working directory *that have the same name
+##	as your Markdown files*. Other files with these extensions will be safe.
 
 
 
