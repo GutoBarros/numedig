@@ -20,6 +20,7 @@ MEXT = md
 
 ## All markdown files in the working directory
 SRC = $(wildcard *.$(MEXT))
+BASE = $(basename $(SRC))
 
 ## Location of Pandoc support files.
 PREFIX = /Users/sebastianbarfort/.pandoc
@@ -30,17 +31,20 @@ BIB = /Users/sebastianbarfort/git/sausages/socbibs/socbib-pandoc.bib
 ## CSL stylesheet (located in the csl folder of the PREFIX directory).
 CSL = apsa
 
-
 PDFS=$(SRC:.md=.pdf)
 HTML=$(SRC:.md=.html)
 TEX=$(SRC:.md=.tex)
+ODT=$(SRC:.md=.odt)
+DOCX=$(SRC:.md=.docx)
 
-
-all:	$(PDFS) $(HTML) $(TEX)
+all:	$(PDFS) $(HTML) $(TEX) $(ODT) $(DOCX)
 
 pdf:	clean $(PDFS)
 html:	clean $(HTML)
 tex:	clean $(TEX)
+odt:	clean $(ODT)
+docx:	clean $(DOCX)
+
 
 %.html:	%.md
 	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -w html -S --template=$(PREFIX)/templates/html.template --css=$(PREFIX)/marked/kultiad-serif.css --filter pandoc-citeproc --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) -o $@ $<
@@ -51,8 +55,15 @@ tex:	clean $(TEX)
 	bash make_equations.sh
 	rm -f *.aux *.bcf *.log *.out *.run.xml
 
+%.odt:	%.md
+	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -w odt -S --template=$(PREFIX)/templates/odt.template --filter pandoc-citeproc --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) -o $@ $<	
+
 %.pdf:	%.md
 	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -w latex -s -S --latex-engine=pdflatex --template=$(PREFIX)/templates/latex.template --filter pandoc-citeproc --csl=$(PREFIX)/csl/ajps.csl --bibliography=$(BIB) -o $@ $<
 
+%.docx:	%.odt
+	/Applications/LibreOffice.app/Contents/MacOS/soffice --invisible --convert-to docx $@ $<
+
+
 clean:
-	rm -f *.html *.pdf *.tex
+	rm -f $(addsuffix .html, $(BASE)) $(addsuffix .pdf, $(BASE)) $(addsuffix .tex, $(BASE)) $(addsuffix .odt, $(BASE)) $(addsuffix .docx, $(BASE))
