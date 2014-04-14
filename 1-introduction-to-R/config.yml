@@ -1,0 +1,9 @@
+author      : Sebastian Barfort
+job         : PhD student
+biglogo     : logo/oi.png
+logo        : logo/ku.png
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : solarized_light      # 
+mode        : selfcontained
+ext_widgets : {rCharts: "libraries/nvd3"}
