@@ -1,0 +1,328 @@
+a workflow for slides and papers
+========================================================
+author: sebastian barfort
+date: NUMEDIG, april 2014
+
+========================================================
+
+## Writing academic papers is a pain
+
+- not only do you need a good idea 
+- you also need to turn that idea into a nice looking product
+- the focus today is the process from idea to product
+    - most of you probably use either MS Word or LaTeX?
+    - I'll try to make the case for a more stripped down text file approach
+
+========================================================
+
+## What do we want?
+
+- academic papers
+- nice looking slides to sell our ideas
+
+## How do we want them?
+
+- today: primarily pdf
+- in the future (but the future is now): also html 
+
+The perfect workflow
+====================================
+<small>
+**input**
+- text
+- equations
+- plots 
+- tables
+- citations
+
+***
+**output**
+
+- pdf or html
+- because of some unexplainable facts about the world: docx
+- we do not want to worry about citations, equations, etc.
+- we *do not* want to do any post-processing (this is tedius and not reproducible)
+</small>
+
+========================================================
+
+If only there were some program that could do all these things...
+
+
+Enter: Pandoc!
+=============
+type:section
+
+
+Pandoc 
+====================================
+- written by John Macfarlane (philosophy prof at UC Berkeley, *hobby* programmer)
+- Pandoc is your swiss-army knife for document conversion
+- Among a huge set of inputs, Pandoc accepts LaTeX
+
+***
+![](images/john.macfarlane.jpg)
+
+========================================================
+
+### Article
+
+1. `.tex` to `.html`
+
+    pandoc -s  paper.tex -o paper_tex.html
+
+2. `.tex` to `.docx`
+
+    pandoc -s  paper.tex -o paper_tex.docx
+
+*** 
+
+### Slides
+
+1. `.tex` to beamer slides 
+
+    pandoc -t beamer slides.tex  -o slides_tex.pdf
+
+
+2. `.tex` to `.html` slides 
+
+    pandoc -s --mathml -i -t dzslides slides.tex -o slides_tex.html
+
+3. using the slidy framework
+
+    pandoc -s --mathml -i -t slidy slides.tex -o slides_tex.html
+
+
+If you absolutely love LaTeX, stop here...
+=============
+type:section
+
+========================================================
+
+## I think we can do better
+
+- I can write an entire slideshow in the time it takes you to type `\documentclass{beamer}`, `\title{}`, etc
+- I never remember the commands 
+- I never understand the error messsages
+- ... and I think beamer slides are ugly
+
+========================================================
+
+If only there were ever some simpler program that could give us the same funtionality...
+
+
+Enter Markdown!
+=============
+type:section
+
+========================================================
+
+## Markdown philosophy
+
+> - writing should not be an alienating experience trapped in WYSIWYG editors
+> - a file should be readable intuitively and not be buried in markup
+> - markdown *is* a markup language, but one meant to be read by humans rather than machines
+
+- markdown was created for the web (you know it if you use Github, Stackoverflow, etc.)
+
+========================================================
+
+## Example
+
+Suppose we want to create a nested list
+
+* fruits
+    - apples
+        - macintosh
+        - red delicious
+    - pears 
+    - peaches
+* vegetables
+    - broccoli
+    - chard
+
+========================================================
+
+## Latex
+
+    \begin{itemize}      
+    \item fruits         
+        \begin{itemize}       
+        \item apples          
+            \begin{itemize}     
+            \item macintosh     
+            \item red delicious 
+            \end{itemize}       
+        \item pears           
+        \item peaches         
+        \end{itemize}         
+    \item vegetables        
+        \begin{itemize}       
+        \item brocolli        
+        \item chard           
+        \end{itemize}         
+    \end{itemize}    
+
+========================================================
+
+## HTML
+
+    <ul>
+        <li>fruits
+        <ul>
+            <li>apples
+            <ul>
+                <li>macintosh</li>
+                <li>red delicious</li>
+            </ul></li>
+            <li>pears</li>
+            <li>peaches</li>
+        </ul></li>
+        <li>vegetables
+        <ul>
+            <li>brocolli</li>
+            <li>chard</li>
+        </ul></li>
+    </ul>                       
+
+========================================================
+
+## Markdown 
+    * fruits
+        - apples
+            - macintosh
+            - red delicious
+        - pears 
+        - peaches
+    * vegetables
+        - broccoli
+        - chard
+
+========================================================
+
+### Article
+
+1. `.md` to `.html`
+
+    pandoc -s paper.md -o paper_md.html
+
+
+2. `.md` to `.pdf`
+
+    pandoc -s paper.md -o paper_md.pdf
+
+
+*** 
+
+### Slides
+
+1. `.md` to beamer slides 
+
+    pandoc -t beamer slides.md  -o slides_md.pdf
+
+2. using the slidy `.html` framework
+
+    pandoc -s --mathml -i -t slidy slides.md -o slides_md.html
+
+========================================================
+
+## The general idea
+
+- markdown is *extremely* easy to learn 
+- it is widely used, with almost endless possibilities 
+- so why not use it for academic papers?
+
+***
+![](images/atlas.png)
+
+========================================================
+
+## Some technical stuff...
+
+- customize your stylesheet
+    - latex template
+    - install proper fonts (minion pro)
+    - pandoc templates
+
+- get help [here](http://kieranhealy.org/blog/archives/2014/01/23/plain-text/)
+- my style files are on [github]()
+- let's see an example of a real paper (which won't be online until there's a draft ready)
+
+========================================================
+
+## Some even more advanced stuff
+
+- html doesn't understand latex tables (and vice versa)
+- so we need to be able to typeset 
+    - markdown tables
+    - latex and html tables
+- you can include raw html and latex code in your markdown file    
+- can your favorite stats program do that?
+
+========================================================
+
+## Some can...
+
+```{r, results = FALSE, cache = FALSE}
+library(stargazer)
+linear.1 <- lm(rating ~ complaints + privileges + learning + raises + critical,
+data=attitude)
+linear.2 <- lm(rating ~ complaints + privileges + learning, data=attitude)
+## create an indicator dependent variable, and run a probit model
+attitude$high.rating <- (attitude$rating > 70)
+probit.model <- glm(high.rating ~ learning + critical + advance, data=attitude,
+family = binomial(link = "probit"))
+```
+
+========================================================
+
+![](images/stargazer.png)
+
+
+========================================================
+
+```{r, echo = FALSE, results = 'asis', cache = FALSE}
+library(stargazer)
+linear.1 <- lm(rating ~ complaints + privileges + learning + raises + critical,
+data=attitude)
+linear.2 <- lm(rating ~ complaints + privileges + learning, data=attitude)
+## create an indicator dependent variable, and run a probit model
+attitude$high.rating <- (attitude$rating > 70)
+probit.model <- glm(high.rating ~ learning + critical + advance, data=attitude,
+family = binomial(link = "probit"))
+stargazer(linear.1, linear.2, probit.model, title="Results", align=TRUE,
+          type = "html")
+```
+
+========================================================
+
+- it would be even better to output markdown tables 
+- this is almost possible in `R` and is a project at GSOC 2014
+
+```{r, cache = FALSE}
+library(pander)
+m <- mtcars[1:5, 1:3]
+pandoc.table(m, style = "rmarkdown")
+```
+
+========================================================
+
+## output
+
+|         &nbsp;          |  mpg  |  cyl  |  disp  |
+|:-----------------------:|:-----:|:-----:|:------:|
+|      **Mazda RX4**      |  21   |   6   |  160   |
+|    **Mazda RX4 Wag**    |  21   |   6   |  160   |
+|     **Datsun 710**      | 22.8  |   4   |  108   |
+|   **Hornet 4 Drive**    | 21.4  |   6   |  258   |
+|  **Hornet Sportabout**  | 18.7  |   8   |  360   |
+
+Thank you
+=============
+type:section
+
+- materials are on [github]()
+- thanks to [Kearan Healy](http://kieranhealy.org/) for his templates
+
+
+
