@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>Beamer slide examples</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script type="text/javascript">/*<![CDATA[*/
+  /* 
+  March 19, 2004 MathHTML (c) Peter Jipsen http://www.chapman.edu/~jipsen
+  Released under the GNU General Public License version 2 or later.
+  See the GNU General Public License (at http://www.gnu.org/copyleft/gpl.html)
+  for more details.
+  */
+  
+  function convertMath(node) {// for Gecko
+    if (node.nodeType==1) {
+      var newnode = 
+        document.createElementNS("http://www.w3.org/1998/Math/MathML",
+          node.nodeName.toLowerCase());
+      for(var i=0; i < node.attributes.length; i++)
+        newnode.setAttribute(node.attributes[i].nodeName,
+          node.attributes[i].nodeValue);
+      for (var i=0; i<node.childNodes.length; i++) {
+        var st = node.childNodes[i].nodeValue;
+        if (st==null || st.slice(0,1)!=" " && st.slice(0,1)!="\n") 
+          newnode.appendChild(convertMath(node.childNodes[i]));
+      }
+      return newnode;
+    }
+    else return node;
+  }
+  
+  function convert() {
+    var mmlnode = document.getElementsByTagName("math");
+    var st,str,node,newnode;
+    for (var i=0; i<mmlnode.length; i++)
+      if (document.createElementNS!=null)
+        mmlnode[i].parentNode.replaceChild(convertMath(mmlnode[i]),mmlnode[i]);
+      else { // convert for IE
+        str = "";
+        node = mmlnode[i];
+        while (node.nodeName!="/MATH") {
+          st = node.nodeName.toLowerCase();
+          if (st=="#text") str += node.nodeValue;
+          else {
+            str += (st.slice(0,1)=="/" ? "</m:"+st.slice(1) : "<m:"+st);
+            if (st.slice(0,1)!="/") 
+               for(var j=0; j < node.attributes.length; j++)
+                 if (node.attributes[j].nodeValue!="italic" &&
+                   node.attributes[j].nodeValue!="" &&
+                   node.attributes[j].nodeValue!="inherit" &&
+                   node.attributes[j].nodeValue!=undefined)
+                   str += " "+node.attributes[j].nodeName+"="+
+                       "\""+node.attributes[j].nodeValue+"\"";
+            str += ">";
+          }
+          node = node.nextSibling;
+          node.parentNode.removeChild(node.previousSibling);
+        }
+        str += "</m:math>";
+        newnode = document.createElement("span");
+        node.parentNode.replaceChild(newnode,node);
+        newnode.innerHTML = str;
+      }
+  }
+  
+  if (document.createElementNS==null) {
+    document.write("<object id=\"mathplayer\"\
+    classid=\"clsid:32F66A20-7614-11D4-BD11-00104BD3F987\"></object>");
+    document.write("<?import namespace=\"m\" implementation=\"#mathplayer\"?>");
+  }
+  if(typeof window.addEventListener != 'undefined'){
+    window.addEventListener('load', convert, false);
+  }
+  if(typeof window.attachEvent != 'undefined') {
+    window.attachEvent('onload', convert);
+  }
+  /*]]>*/
+  </script>
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Beamer slide examples</h1>
+  <p class="author">
+
+  </p>
+</div>
+<div id="simple-slide-with-three-points-shown-all-at-once" class="slide section level3">
+<h1>Simple slide with three points shown all at once</h1>
+<ul class="incremental">
+<li><p>Point 1</p></li>
+<li><p>Point 2</p></li>
+<li><p>Point 3</p></li>
+</ul>
+</div>
+<div id="slide-with-some-math" class="slide section level3">
+<h1>Slide with some math</h1>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mo>∞</mo></munderover><mfrac><mrow><msup><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mrow><mi>n</mi><mo>!</mo></mrow></mfrac><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mi>a</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow></math></p>
+</div>
+<div id="slide-with-a-quote" class="slide section level3">
+<h1>Slide with a quote</h1>
+<blockquote>
+<p>I can do this in LaTeX</p>
+</blockquote>
+</div>
+</body>
+</html>

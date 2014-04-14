@@ -1,0 +1,51 @@
+\documentclass[]{beamer}
+% Class options include: notes, notesonly, handout, trans,
+%                        hidesubsections, shadesubsections,
+%                        inrow, blue, red, grey, brown
+
+% Theme for beamer presentation.
+\usepackage{beamerthemesplit} 
+% Other themes include: beamerthemebars, beamerthemelined, 
+%                       beamerthemetree, beamerthemetreebars  
+
+\title{Beamer slide examples}    % Enter your title between curly braces
+\author{My name}                 % Enter your name between curly braces
+\institute{My organization}      % Enter your institute name between curly braces
+\date{\today}                    % Enter the date or \today between curly braces
+
+\begin{document}
+
+% Creates title page of slide show using above information
+\begin{frame}
+  \titlepage
+\end{frame}
+\note{Talk for 30 minutes} % Add notes to yourself that will be displayed when
+                           % typeset with the notes or notesonly class options
+
+
+\begin{frame}
+  \frametitle{Simple slide with three points shown all at once}   % Insert frame title between curly braces
+
+  \begin{itemize}
+  \item Point 1
+  \item Point 2
+  \item Point 3
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Slide with some math}   % Insert frame title between curly braces
+\begin{equation}
+f(x)=\sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(x-a)^n
+\end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Slide with a quote}   % Insert frame title between curly braces
+\begin{quote}
+I can do this in LaTeX
+\end{quote}
+\end{frame}
+
+
+\end{document}

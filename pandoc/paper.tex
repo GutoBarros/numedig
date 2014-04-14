@@ -1,0 +1,151 @@
+\documentclass[12pt]{article}%
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[nohead]{geometry}
+\usepackage[singlespacing]{setspace}
+\usepackage[bottom]{footmisc}
+\usepackage{indentfirst}
+%\usepackage[danish]{babel}
+\usepackage{endnotes}
+\usepackage{graphicx}%
+\usepackage{rotating}
+\usepackage[hypertex]{hyperref}
+\setcounter{MaxMatrixCols}{30}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\makeatletter
+\def\@biblabel#1{\hspace*{-\labelsep}}
+\makeatother
+\geometry{left=0.8in,right=0.8in,top=1.00in,bottom=1.0in}
+\begin{document}
+
+\title{Political Institutions and Economic Development }
+\author{Sebastian Barfort\medskip\\{\normalsize} \date{\normalsize \today}}
+\maketitle
+
+\sloppy
+
+
+
+%\textbf{Keywords:} LaTeX; economics research.
+
+\strut
+
+%\textbf{JEL Classification Numbers:} Y90 (Miscellaneous Categories -Other -Other).
+
+\thispagestyle{empty}
+
+\pagebreak%
+%\onehalfspacing
+
+\singlespacing
+
+\section{}
+At least two problems prevent clear identification of the effect of institutions on economic growth: first, we lack a clear understanding of what constitutes an ``institution.'' Relying on North's (1990) ``humanly devised constraints'' definition of formal and informal rules does not give us much in terms of meaningful empirical identification. Second, we have no accepted theory of endogenous institutional change, and thus no unified growth model in which we can evaluate different institutions. In a recent paper, Jones and Romer (2009, p. 4) note that 
+\begin{quote}
+we follow the example of the neoclassical model and treat institutions the way the neoclassical model treated technology, as an important force that enters the formalism but which evolves according to a dynamic that is not explicitly modelled. Out on the horizon, we can expect that current research on the dynamics of institutions and politics will ultimately lead to a simple formal representation of endogenous institutional dynamics as well.
+\end{quote}
+
+
+\section{}
+A simplified textbook approach to causality looks something like the following:\footnote{Notation as in Angriest and Pischke (2009)} for simplicity, assume our institutional treatment variable, $D$, can only take two values: $D_i \in \{0,1\}$ for all $i$. Thus, we can write the potential outcome for individual/municipality/nation (from now on: individual) $i$. For each individual in the population we observe either $Y_{1i}$, or $Y_{0i}$, bot never both. Thus, we need to engage in a thought experiment; we simply ask ourselves what the effect would have been on individual $i$ had she not been treated, and vice versa. The following highlights the counterfactual nature of a causal effect: Because statistical inference requires a certain quantity of observations, it is impossible to measure causal effects at the individual level. Researchers therefore focus on average causal effects. The two most frequently used in the literature is the Average Treatment Effect (ATE): $E[Y_{1i}-Y_{0i}]$ and the Average Treatment Effect on the Treated (ATET): $E[Y_{1i}-Y_{0i}
+|D_i=1 ]$, where $E[\cdot]$ is the well known expectations operator. Note that the latter can be rewritten as
+\begin{equation}
+E[Y_{1i}-Y_{0i}|D_i=1 ]=E[Y_{1i}
+|D_i=1 ]-E[Y_{0i}
+|D_i=1 ].
+\end{equation}
+Equation (2) illustrates the counterfactual aspect of causal inference: The first term captures the expected value of the treated, whereas the second term asks what the expected value of the treated would be \textit{had they not been treated}. The fact that the counterfactual term is (by definition) never observed has caused a lively debate about the validity of causal inference among statisticians, most prominently represented by Dawid's Popperian argument that ``counterfactual theories are essentially metaphysical,'' and it has inspired Przeworski (2006) to ask whether ``the science of comparative politics is possible?''
+
+Robins and Greenland (2000) present a potential Popparian counterargument to Dawid's criticism of counterfactuals; according to their interpretation, Popper required that a theory must make \textit{some} testable predictions that can be confronted with the data, all the while still relying on a core of untestable assumptions (one could argue that the rationality assumption falls under this category as well). \\
+
+So far we have dealt with causality from a purely abstract perspective. In reality, researchers rely on regression analysis to identify parameters of interest. A regression model corresponding to the treatment variable $D$ can be written as
+\begin{equation}
+Y_{it}=\alpha+\beta_iD_i+\epsilon_i,
+\end{equation}
+where $\beta_i=E[Y_{1i}|D_i=1]-E[Y_{1i}|D_i=0]$ captures the causal effect of $D_i$ on individual $i$ under random assignment. Note that in order to be able to estimate ATE we need to make an assumption of \textit{identical treatment effect}. That is, we assume that the effect of treatment is identical for individuals who share the same covariates. Mathematically: $\beta_i=\beta$ for all $i$. 
+
+This section has attempted to illustrate that causal identification of institutions remains, to put it optimistically, extremely difficult and tedious. We operate in counterfactual territory where only few of our assumptions are directly testable. Furthermore, assignment of institutions is most likely never random (actually, as Przeworski (2006, p. 24) states ``the motor of history is endogeneity'') and the identical treatment effect remains untestable. So where do we go from here? I would argue that we should narrow our attention to within country studies where random experiments are possible, or where history has done the randomization for us. In this respect, I view Dell's and Berger's (2009) experimental approach promising. However, we need to humbly recognize that convincing evidence of causality might still be out of reach, and that so far results are at best indications. 
+
+\section{}
+In section 1, I focused on three different institutions that could affect growth. In this section, I present a sketch of two models: one model showing how a country can get trapped in bad property rights institutions and another model showing how a country can get trapped in bad contracting institutions.\footnote{Space did not allow for a sketch of a model of how a country can get trapped in bad conflict processing institutions. Such a model could build on interesting work by Xi (2011a, 2011b)} The first is inspired by a model by recent work by Besley and Persson (2009, 2010, 2011) and earlier work by Acemoglu (2006), whereas the latter is inspired by ongoing work by Vardy (2010). 
+
+
+\clearpage
+\begin{thebibliography}{9} %
+
+\singlespacing
+
+\bibitem[] {a} Acemoglu, D., S. Johnson, J. Robinson. and P. Yared. 2008. Income and Democracy. \textit{American Economic Review}, 98, pp. 808-842. 
+
+
+\bibitem[] {a} Angrist. J. D. and J. S. Pischke. 2009. \textit{Mostly Harmless Econometrics}, Princeton: Princeton University Press.
+
+\bibitem[] {a} Besley, T. and T. Persson. 2011. \textit{Pillars of Prosperity},  Princeton: Princeton University Press. 
+
+\bibitem[] {a} Bowles, S. S. N. Durlauf. and K. R. Hoff. \textit{Poverty Traps}, Russell Sage Foundation. 
+
+
+\bibitem[] {a} Casey, K. R. Glennerster. and T. Miguel. 2011. Reshaping Institutions: Evidence 
+on External Aid and Local Collective Action, NBER working paper 17012. 
+
+\bibitem[] {a} Dawid, A. P. 2000. Causal Inference Without Counterfactuals, \textit{Journal of the American Statistical Association}, 95, pp. 407-424.
+
+\bibitem[] {a} Fearon, J. M. Humphreys. and J. Weinstein. 2011. Development 
+Assistance, Institution Building, and Social Cohesion after Civil War: Evidence from a 
+Field Experiment in Liberia, \textit{American Economic Review: Papers \& Proceedings}.
+
+\bibitem[] {a} Jones, E. L. 1981. \textit{The European Miracle: Environments, Economies, and Geopolitics in the 
+History of Europe and Asia}, Cambridge: Cambridge University Press.
+
+
+\bibitem[] {a} Jones, C. I. and P. M. Romer (2009). The New Kaldor Facts: Ideas, Institutions, Population, and Human Capital, NBER working paper 15094. 
+
+
+
+\bibitem[] {a} Przeworski, A. 2006. Is the Science of Comparative Politics Possible?, C. Boix. and S. C. Stokes (eds.), \textit{Oxford Handbook of Comparative Politics}.
+
+\bibitem[] {a} Robins, J. M. and S. Greenland. 2000. Comment on Causal Inference Without Counterfactuals, \textit{Journal of the American Statistical Association}, 95, pp. 431-435.
+
+\bibitem[] {a} Romer, P. M. 2010. Which Parts of Globalization Matter for Catch-Up Growth?  NBER working paper 15755. 
+
+\bibitem[] {a} Rosenstein-Rodan, P. N. 1943. Problems of Industrialisation of  Eastern and South-eastern Europe, \textit{The Economic Journal}, pp. 202-211. 
+
+
+\bibitem[] {a} Vardy, F. 2010. Institutional Traps, U.C. Berkeley working paper. 
+
+\bibitem[] {a} Williamson, O. 1975. \textit{Markets and Hierarchies.}, New York: Free Press. 
+
+\bibitem[] {a} -------. 1985. \textit{The  economic  institutions  of  capitalism}. New  York: Free  Press.
+
+\bibitem[] {a} Xi, T. 2011a. A Theory of Confict Management in Divided Societies Under
+Majority Rule and Power-Sharing, working paper. 
+
+\bibitem[] {a} -------. 2011b. Constitutional Mediation and Political Compromise in Repeated
+Conflicts, working paper. 
+
+
+\end{thebibliography}
+
+\end{document}
