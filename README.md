@@ -1,4 +1,4 @@
-NUMEDIG presentation
+NUMEDIG presentations
 ========
 
 This folder contains the material for my presentations at [NUMEDIG](http://www.tjeconomics.com/numedig/) at the University of Copenhagen. So far, I have given the following presentations:
