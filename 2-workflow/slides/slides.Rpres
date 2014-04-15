@@ -245,7 +245,7 @@ Suppose we want to create a nested list
     - pandoc templates
 
 - get help [here](http://kieranhealy.org/blog/archives/2014/01/23/plain-text/)
-- my style files are on [github]()
+- my style files are on [github](https://github.com/sebastianbarfort/numedig/tree/master/2-workflow/templates)
 - let's see an example of a real paper (which won't be online until there's a draft ready)
 
 ========================================================
@@ -321,7 +321,7 @@ Thank you
 =============
 type:section
 
-- materials are on [github]()
+- materials are on [github](https://github.com/sebastianbarfort/numedig/tree/master/2-workflow)
 - thanks to [Kearan Healy](http://kieranhealy.org/) for his templates
 
 
