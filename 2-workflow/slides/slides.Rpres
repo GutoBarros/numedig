@@ -9,7 +9,8 @@ date: NUMEDIG, april 2014
 
 - not only do you need a good idea 
 - you also need to turn that idea into a nice looking product
-- the focus today is the process from idea to product
+- it's a bit like sausage making in the sense that little attention is paid to how slides and papers are made
+- my focus today is this process
     - most of you probably use either MS Word or LaTeX?
     - I'll try to make the case for a more stripped down text file approach
 
@@ -90,7 +91,8 @@ Pandoc
 
 3. using the slidy framework
 
-    pandoc -s --mathml -i -t slidy slides.tex -o slides_tex.html
+    pandoc -s --webtex -i -t slidy slides.tex -o slides_tex.html
+
 
 
 If you absolutely love LaTeX, stop here...
@@ -222,7 +224,7 @@ Suppose we want to create a nested list
 
 2. using the slidy `.html` framework
 
-    pandoc -s --mathml -i -t slidy slides.md -o slides_md.html
+    pandoc -s --webtex -i -t slidy slides.md -o slides_md.html
 
 ========================================================
 
@@ -250,7 +252,7 @@ Suppose we want to create a nested list
 
 ========================================================
 
-## Some even more advanced stuff
+## More technical stuff 
 
 - html doesn't understand latex tables (and vice versa)
 - so we need to be able to typeset 
